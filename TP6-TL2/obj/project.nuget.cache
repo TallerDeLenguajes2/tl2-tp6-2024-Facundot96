@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "CUyIeV0W1D0=",
+  "dgSpecHash": "bsOE7cUQrY4=",
   "success": true,
   "projectFilePath": "C:\\Users\\faku_\\OneDrive\\Documentos\\GitHub\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\faku_\\.nuget\\packages\\microsoft.data.sqlite\\9.0.0-rc.2.24474.1\\microsoft.data.sqlite.9.0.0-rc.2.24474.1.nupkg.sha512",
+    "C:\\Users\\faku_\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.0-rc.2.24474.1\\microsoft.data.sqlite.core.9.0.0-rc.2.24474.1.nupkg.sha512",
+    "C:\\Users\\faku_\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\faku_\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
+    "C:\\Users\\faku_\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\faku_\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.10\\sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\faku_\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
   "logs": []
 }
