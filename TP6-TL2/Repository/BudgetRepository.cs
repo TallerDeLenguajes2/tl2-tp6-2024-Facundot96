@@ -2,7 +2,7 @@
 using Microsoft.Data.Sqlite;
 using TP6.Models;
 
-namespace TP5.Repository;
+namespace TP6.Repository;
 
 public class BudgetRepository : IBudgetRepository
 {
@@ -61,19 +61,21 @@ public class BudgetRepository : IBudgetRepository
         return budgets;
     }
 
-    public void updateBudget(int id, BudgetProductDetail budgetProductDetail)
+    public void updateBudget(int id, Budget budget)
     {
         using (var connection = new SqliteConnection(connectionString))
         {
             connection.Open();
 
-            var query = "INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad)"+" VALUES (@idPresupuesto, @idProducto, @Cantidad);";
+            var query = "UPDATE Presupuestos "
+                               + "SET NombreDestinatario = (@NuevoDestinatario) "
+                               + "WHERE idPresupuesto = (@idPresupuesto);;";
             
             SqliteCommand command = new SqliteCommand(query, connection);
             
             command.Parameters.Add(new SqliteParameter("@idPresupuesto", id));
-            command.Parameters.Add(new SqliteParameter("@idProducto", budgetProductDetail.Product.IdProduct));
-            command.Parameters.Add(new SqliteParameter("@Cantidad", budgetProductDetail.Quantity));
+            command.Parameters.Add(new SqliteParameter("@NuevoDestinatario", budget.ClientName));
+            
             command.ExecuteNonQuery();
             
             connection.Close();
@@ -89,43 +91,22 @@ public class BudgetRepository : IBudgetRepository
             {
                 connection.Open();
 
-                var query = "SELECT P.idPresupuesto, P.NombreDestinatario, P.FechaCreacion, PR.idProducto, PR.Descripcion "
-                               + "AS Producto, PR.Precio, PD.Cantidad, (PR.Precio * PD.Cantidad) AS Subtotal "
-                               + "FROM Presupuestos P "
-                               + "JOIN PresupuestosDetalle PD ON P.idPresupuesto = PD.idPresupuesto "
-                               + "JOIN Productos PR ON PD.idProducto = PR.idProducto "
-                               + "WHERE P.idPresupuesto = (@idPresupuesto);";
+                var query = "SELECT * FROM Presupuestos WHERE idPresupuesto = (@idPresupuesto);";
 
                 SqliteCommand command = new SqliteCommand(query, connection);
                 command.Parameters.Add(new SqliteParameter("@idPresupuesto", id));
                 var reader = command.ExecuteReader();
 
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    if (budget.ClientName == null || budget.DateCreated == new DateOnly(1, 1, 1))
+                    budget.IdBudget = Convert.ToInt32(reader["idPresupuesto"]);
+                    budget.ClientName = reader["NombreDestinatario"].ToString();
+                    if (reader["FechaCreacion"] != DBNull.Value &&
+                        DateTime.TryParse(reader["FechaCreacion"].ToString(), out DateTime dateCreated))
                     {
-                        DateOnly date = new();
-                        DateOnly.TryParseExact((string?)reader["FechaCreacion"], "yyyy-MM-dd", out date);
-                        budget.IdBudget = Convert.ToInt32(reader["idPresupuesto"]);
-                        budget.ClientName = reader["NombreDestinatario"].ToString();
-                        budget.DateCreated = date;
-                        budget.Details = new List<BudgetProductDetail>();
+                        budget.DateCreated = DateOnly.FromDateTime(dateCreated); 
                     }
-
-                    var product = new Product
-                    {
-                        IdProduct = Convert.ToInt32(reader["idProducto"]),
-                        Description = reader["Producto"].ToString(),
-                        Price = Convert.ToInt32(reader["Precio"])
-                    };
-
-                    var detail = new BudgetProductDetail()
-                    {
-                        Product = product,
-                        Quantity = Convert.ToInt32(reader["Cantidad"]),
-                    };
-
-                    budget.Details.Add(detail);
+                    
                 }
 
                 connection.Close();
@@ -149,4 +130,72 @@ public class BudgetRepository : IBudgetRepository
             connection.Close();
         }
     }
+    
+    public int GetQuantityOfProduct(int idBudget, int idProduct)
+    {
+        int quantity = 0;
+
+        using (var connection = new SqliteConnection(connectionString))
+        {
+            connection.Open();
+
+            var query = "SELECT cantidad "
+                           + "FROM PresupuestosDetalle "
+                           + "WHERE idPresupuesto = (@idPresupuesto) AND idProducto = (@idProducto);";
+
+            SqliteCommand command = new SqliteCommand(query, connection);
+            command.Parameters.Add(new SqliteParameter("@idPresupuesto", idBudget));
+            command.Parameters.Add(new SqliteParameter("@idProducto", idProduct));
+            var reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                quantity = Convert.ToInt32(reader["Cantidad"]);
+            }
+
+            connection.Close();
+        }
+
+        return quantity;
+    }
+
+    public void AddProduct(int idBudget, BudgetProductDetail detail)
+    {
+        using (var connection = new SqliteConnection(connectionString))
+        {
+            string query;
+
+            int quantity = GetQuantityOfProduct(idBudget, detail.Product.IdProduct);
+
+            if (quantity > 0)
+            {
+                query = "UPDATE PresupuestosDetalle "
+                        + "SET Cantidad = (@Cantidad) "
+                        + "WHERE idPresupuesto = (@idPresupuesto) AND idProducto = (@idProducto);";
+            }
+            else
+            {
+                query = "INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) "
+                        + "VALUES (@idPresupuesto, @idProducto, @Cantidad);";
+            }
+
+            quantity += detail.Quantity;
+
+            connection.Open();
+            SqliteCommand command = new(query, connection);
+            command.Parameters.Add(new SqliteParameter("@idPresupuesto", idBudget));
+            command.Parameters.Add(new SqliteParameter("@idProducto", detail.Product.IdProduct));
+            command.Parameters.Add(new SqliteParameter("@Cantidad", quantity));
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+    }
+
+   
+
+        
+
+        
+    
 }

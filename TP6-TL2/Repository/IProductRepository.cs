@@ -1,6 +1,6 @@
 ﻿using TP6.Models;
 
-namespace TP5.Repository;
+namespace TP6.Repository;
 
 public interface IProductRepository
 {

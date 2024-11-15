@@ -1,18 +1,19 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\faku_\\OneDrive\\Documentos\\GitHub\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj": {}
+    "D:\\RiderProyects\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\faku_\\OneDrive\\Documentos\\GitHub\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj": {
+    "D:\\RiderProyects\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\faku_\\OneDrive\\Documentos\\GitHub\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj",
+        "projectUniqueName": "D:\\RiderProyects\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj",
         "projectName": "TP6-TL2",
-        "projectPath": "C:\\Users\\faku_\\OneDrive\\Documentos\\GitHub\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj",
+        "projectPath": "D:\\RiderProyects\\tl2-tp6-2024-Facundot96\\TP6-TL2\\TP6-TL2.csproj",
         "packagesPath": "C:\\Users\\faku_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\faku_\\OneDrive\\Documentos\\GitHub\\tl2-tp6-2024-Facundot96\\TP6-TL2\\obj\\",
+        "outputPath": "D:\\RiderProyects\\tl2-tp6-2024-Facundot96\\TP6-TL2\\obj\\",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "C:\\Users\\faku_\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],

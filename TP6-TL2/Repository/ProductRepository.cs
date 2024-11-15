@@ -2,7 +2,7 @@
 using TP6.Models;
 using Microsoft.Data.Sqlite;
 
-namespace TP5.Repository;
+namespace TP6.Repository;
 
 public class ProductRepository : IProductRepository
 {

@@ -1,0 +1,9 @@
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.csproj.AssemblyReference.cache
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.GeneratedMSBuildEditorConfig.editorconfig
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.AssemblyInfoInputs.cache
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.AssemblyInfo.cs
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.csproj.CoreCompileInputs.cache
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.MvcApplicationPartsAssemblyInfo.cache
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.RazorAssemblyInfo.cache
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.RazorAssemblyInfo.cs
+D:\RiderProyects\tl2-tp6-2024-Facundot96\TP6-TL2\obj\Debug\net8.0\TP6-TL2.sourcelink.json
